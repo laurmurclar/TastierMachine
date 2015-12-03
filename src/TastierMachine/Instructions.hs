@@ -7,8 +7,11 @@ data Instruction = Add
                  | Mul
                  | Div
                  | Equ
-                 | Lss
+                 | NotE
+		 | Lss
+		 | Lte
                  | Gtr
+		 | Gte
                  | Neg
                  | Load
                  | Sto

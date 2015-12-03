@@ -37,7 +37,6 @@
 module TastierMachine.Machine where
 import qualified TastierMachine.Instructions as Instructions
 import Data.Int (Int8, Int16)
-import Data.Char (intToDigit)
 import Numeric (showIntAtBase)
 import Data.Bits (complement)
 import Data.Array ((//), (!), Array, elems)
@@ -138,10 +137,26 @@ run = do
                           smem = (smem // [(rtp-2, result)]) }
           run
 
+        Instructions.NotE   -> do
+          let a = smem ! (rtp-1)
+          let b = smem ! (rtp-2)
+          let result = fromIntegral $ fromEnum (b /= a)
+          put $ machine { rpc = rpc + 1, rtp = rtp - 1,
+                          smem = (smem // [(rtp-2, result)]) }
+          run
+
         Instructions.Lss    -> do
           let a = smem ! (rtp-1)
           let b = smem ! (rtp-2)
           let result = fromIntegral $ fromEnum (b < a)
+          put $ machine { rpc = rpc + 1, rtp = rtp - 1,
+                          smem = (smem // [(rtp-2, result)]) }
+          run
+
+        Instructions.Lte    -> do
+          let a = smem ! (rtp-1)
+          let b = smem ! (rtp-2)
+          let result = fromIntegral $ fromEnum (b <= a)
           put $ machine { rpc = rpc + 1, rtp = rtp - 1,
                           smem = (smem // [(rtp-2, result)]) }
           run
@@ -152,6 +167,14 @@ run = do
           let result = fromIntegral $ fromEnum (b > a)
           put $ machine { rpc = rpc + 1, rtp = rtp - 1,
                           smem = (smem // [(rtp-2, result)]) }
+          run
+
+        Instructions.Gte    -> do
+          let a = smem ! (rtp-1)
+          let b = smem ! (rtp-2)
+          let result = fromIntegral $ fromEnum (b >= a)
+          put $ machine { rpc = rpc + 1, rtp = rtp - 1,
+                          smem = (smem // [(rtp-2, result)]) } 
           run
 
         Instructions.Neg    -> do
