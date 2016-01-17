@@ -191,6 +191,10 @@ run = do
           put $ machine { rpc = rpc + 1, smem = (smem // [(rtp-1, result)]) }
           run
 
+        Instructions.Pop    -> do
+          put $ machine { rpc = rpc + 1, rtp = rtp - 1 }
+          run
+
         Instructions.Ret    -> do
           {-
             The return address is on top of stack, set the pc to that address

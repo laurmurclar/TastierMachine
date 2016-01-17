@@ -14,6 +14,7 @@ data Instruction = Add
                  | Gtr
 		         | Gte
                  | Neg
+                 | Pop
                  | Load
                  | Sto
                  | Call
