@@ -121,6 +121,14 @@ run = do
                           smem = (smem // [(rtp-2, result)]) }
           run
 
+        Instructions.Mod    -> do
+          let a = smem ! (rtp-1)
+          let b = smem ! (rtp-2)
+          let result = b `mod` a
+          put $ machine { rpc = rpc +1, rtp = rtp -1,
+                          smem = (smem // [(rtp-2, result)]) }
+          run
+
         Instructions.Div    -> do
           let a = smem ! (rtp-1)
           let b = smem ! (rtp-2)

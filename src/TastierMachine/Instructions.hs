@@ -5,13 +5,14 @@ import Data.List (elem)
 data Instruction = Add
                  | Sub
                  | Mul
+                 | Mod
                  | Div
                  | Equ
                  | NotE
-		 | Lss
-		 | Lte
+		         | Lss
+		         | Lte
                  | Gtr
-		 | Gte
+		         | Gte
                  | Neg
                  | Load
                  | Sto

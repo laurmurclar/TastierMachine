@@ -24,6 +24,7 @@ parseInstruction lineNumber text =
     ["Add"]         -> Right $ I.Nullary I.Add
     ["Sub"]         -> Right $ I.Nullary I.Sub
     ["Mul"]         -> Right $ I.Nullary I.Mul
+    ["Mod"]         -> Right $ I.Nullary I.Mod
     ["Div"]         -> Right $ I.Nullary I.Div
     ["Equ"]         -> Right $ I.Nullary I.Equ
     ["NotE"]        -> Right $ I.Nullary I.NotE
